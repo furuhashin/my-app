@@ -1,8 +1,19 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import Hello from './Hello';
+import Greeting from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+
+ReactDOM.render(
+  <Greeting>
+    <Hello>
+      坂本龍馬
+    </Hello>
+    <Hello>
+      宮本武蔵
+    </Hello>
+  </Greeting>,
+document.getElementById('root'));
 registerServiceWorker();
