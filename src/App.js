@@ -12,6 +12,9 @@ class App extends Component {
       ],
       uniqueId: 1,
     };
+    // Appコンポーネントというコンテキストを指定する（DOM内で呼ばれたときにコンテキストを見失う）
+    this.resetTodo = this.resetTodo.bind(this);
+    this.addTodo = this.addTodo.bind(this);
   }
   addTodo(title) {
     const { tasks, uniqueId } = this.state;
@@ -19,22 +22,30 @@ class App extends Component {
       title,
       id: uniqueId,
     });
+    // reactのメソッドstateをセットする
     this.setState({
       tasks,
       uniqueId: uniqueId + 1,
+    });
+  }
+  resetTodo() {
+    this.setState({
+      tasks: [
+        { title: 'Todo1つ目', id: 0 },
+        { title: 'Todo2つ目', id: 1 },
+      ],
     });
   }
   render() {
     return (
       <div className="App">
         <h1>Todo App</h1>
+        <button onClick={this.resetTodo}>リセット</button>
         <TodoInput addTodo={this.addTodo} />
         <TodoList tasks={this.state.tasks} />
       </div>
     );
   }
 }
-// Appコンポーネントというコンテキストを指定する（DOM内で呼ばれたときにコンテキストを見失う）
-this.addTodo = this.addTodo.bind(this);
 
 export default App;
